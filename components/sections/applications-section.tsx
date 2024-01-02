@@ -1,12 +1,12 @@
 import { FC, useCallback, useState } from "react";
 import styled from "styled-components";
-import { IApplication } from "../../config/types/dataTypes";
+import { IApplication, IProduct } from "../../config/types/dataTypes";
 import { SectionTitle as ApplicationsSectionTitle } from "../../config/styled-components";
 import gsap from "gsap";
 import ApplicationDetailsHomeScreen from "../application-details-home-screen";
 
 interface IProps {
-  applications: IApplication[];
+  products: IProduct[];
 }
 
 interface IApplicationName {
@@ -85,6 +85,7 @@ const ApplicationNameContainer = styled.div`
     overflow-x: scroll;
     overflow-y: hidden;
     width: 100%;
+    font-size:1.3rem;
   }
 `;
 
@@ -102,7 +103,7 @@ const ApplicationName = styled.h3<IApplicationName>`
   color: ${({ isSelected, theme }) =>
     isSelected ? theme.colors.textPrimary : "transparent"};
 
-  font-size: ${({ isSelected }) => (isSelected ? "3.5rem" : "2.5rem")};
+  font-size: ${({ isSelected }) => (isSelected ? "2.9rem" : "2.5rem")};
   letter-spacing: ${({ isSelected }) => (isSelected ? "0.3rem" : "0.2rem")};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   -webkit-text-stroke: 1px
@@ -136,9 +137,9 @@ const ApplicationName = styled.h3<IApplicationName>`
   }
 
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
-    font-size: ${({ isSelected }) => (isSelected ? "2.5rem" : "2rem")};
+    font-size: ${({ isSelected }) => (isSelected ? "0.8rem" : "0.6rem")};
     letter-spacing: ${({ isSelected }) => (isSelected ? "0.2rem" : "0.1rem")};
-    white-space: nowrap;
+    white-space: wrap;
     padding: 1rem 0;
   }
 
@@ -147,7 +148,7 @@ const ApplicationName = styled.h3<IApplicationName>`
   }
 `;
 
-const ApplicationsSection: FC<IProps> = ({ applications }) => {
+const ApplicationsSection: FC<IProps> = ({ products }) => {
   const [selectedApplication, setSelectedApplication] = useState<number>(0);
 
   const [isSectionVisible, setIsSectionVisible] = useState<boolean>(false);
@@ -235,24 +236,24 @@ const ApplicationsSection: FC<IProps> = ({ applications }) => {
   return (
     <ApplicationsSectionContainer ref={applicationsSectionRef}>
       <ApplicationsSectionTitle className="applicationSectionTitle">
-        I build <span className="emphasisGreenText">Applications</span>
+         Our <span className="emphasisGreenText">Product</span>
       </ApplicationsSectionTitle>
       <AllApplicationsContainer>
         <ApplicationNameContainer>
-          {applications.map((application, idx) => (
+          {products.map((application, idx) => (
             <ApplicationName
               isSelected={selectedApplication === idx}
               key={application.id}
-              onClick={() => isImageLoaded && handleApplicationNameClick(idx)}
+              onClick={()=>handleApplicationNameClick(idx)}
               className="applicationName"
             >
-              {application.name}
+              {application.productId}
             </ApplicationName>
           ))}
         </ApplicationNameContainer>
         <ApplicationPreviewContainer>
           <ApplicationDetailsHomeScreen
-            application={applications[selectedApplication]}
+            product={products[selectedApplication]}
             isSectionVisible={isSectionVisible}
             isImageLoaded={isImageLoaded}
             setIsImageLoaded={setIsImageLoaded}

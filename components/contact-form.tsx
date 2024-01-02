@@ -42,15 +42,17 @@ const FormContainerComponent: React.FC = () => {
     const { email, message } = formInputState;
 
     try {
-      const { data } = await axios.post("/api/sendmessage", {
+      const { data } = await axios.post("https://pixwing.onrender.com/send-email", {
         email,
         message,
       });
-      if (data.id) {
+      console.log("data",data);
+      if (data!=null) {
         setFormState({
           ...formState,
           loading: false,
           success: true,
+          
         });
 
         setTimeout(() => {

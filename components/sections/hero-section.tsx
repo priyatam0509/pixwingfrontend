@@ -17,9 +17,25 @@ const HeroSectionContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   transform-origin: top;
+  overflow: hidden;
 
   /* center the container */
   margin: 0 auto;
+  & .logo {
+    font-size: 30vw;
+    display: inline-block;
+    transition: all 0.2s ease-out;
+    position: absolute;
+    left:55vw;
+    overflow:hidden;
+    top:0;
+   max-width: 70%;
+   height: 70%;
+
+    &:hover {
+      transform: scale(1.1) translateY(-10px) rotate(5deg);
+    }
+  }
   @media only screen and (max-width: 1560px) {
     gap: ${({ theme }) => theme.space.xl};
   }
@@ -43,16 +59,36 @@ const BigHeading = styled.h1`
     }
   }
 
+  & .letterHeading2 {
+    font-size: 3vw;
+  font-weight: ${({ theme }) => theme.fontWeights.regular};
+    display: inline-block;
+    transition: all 0.2s ease-out;
+
+    &:hover {
+      transform: scale(1.1) translateY(-10px) rotate(5deg);
+    }
+  }
+
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.xl}px) {
     font-size: 6.9vw;
+    & .letterHeading {
+     font-size:8vw;
+    }
   }
 
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}px) {
     font-size: 10vw;
+    & .letterHeading {
+      font-size:13vw;
+     }
   }
 
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}px) {
     font-size: 12vw;
+    & .letterHeading {
+      font-size:16vw;
+     }
   }
 `;
 
@@ -217,27 +253,22 @@ const HeroSection: FC = () => {
 
   return (
     <HeroSectionContainer>
+      <img className="logo"  src="/logo_pixwingai.svg" alt="logo" />
       <HeadingAnimatedWrapper>
         <BigHeading
           onMouseEnter={handleHover}
           onMouseLeave={handleHoverOut}
           className="heroHeading"
         >
-          <span className="letterHeading">H</span>
+          <span className="letterHeading">P</span>
           <span className="letterHeading">i</span>
-          <span className="letterHeading">,</span>
-          <span> </span>
-          <span className="letterHeading">I</span>
-          <span className="letterHeading">&apos;</span>
-          <span className="letterHeading">m</span>
-          <span> </span>
-          <span className="letterHeading">N</span>
+          <span className="letterHeading">x</span>
+          <span className="letterHeading">W</span>
           <span className="letterHeading">i</span>
-          <span className="letterHeading">k</span>
-          <span className="letterHeading">h</span>
+          <span className="letterHeading">n</span>
+          <span className="letterHeading">g</span>
+          <span className="letterHeading">A</span>
           <span className="letterHeading">i</span>
-          <span className="letterHeading">l</span>
-          <span className="letterHeading">.</span>
         </BigHeading>
         <div className="lightRedBanner banner"></div>
       </HeadingAnimatedWrapper>
@@ -247,33 +278,44 @@ const HeroSection: FC = () => {
           onMouseLeave={handleHoverOut}
           className="heroHeading"
         >
-          <span className="letterHeading">I</span>
-          <span className="letterHeading">&apos;</span>
-          <span className="letterHeading">m</span>
+          <span className="letterHeading2">U</span>
+          <span className="letterHeading2">n</span>
+          <span className="letterHeading2">l</span>
+          <span className="letterHeading2">e</span>
+          <span className="letterHeading2">a</span>
+          <span className="letterHeading2">s</span>
+          <span className="letterHeading2">i</span>
+          <span className="letterHeading2">n</span>
+          <span className="letterHeading2">g</span>
           <span> </span>
-          <span className="letterHeading">a</span>
+          <span className="letterHeading2">P</span>
+          <span className="letterHeading2">r</span>
+          <span className="letterHeading2">e</span>
+          <span className="letterHeading2">c</span>
+          <span className="letterHeading2">i</span>
+          <span className="letterHeading2">s</span>
+          <span className="letterHeading2">i</span>
+          <span className="letterHeading2">o</span>
+          <span className="letterHeading2">n</span>
           <span> </span>
-          <span className="letterHeading">f</span>
-          <span className="letterHeading">u</span>
-          <span className="letterHeading">l</span>
-          <span className="letterHeading">l</span>
+          <span className="letterHeading2">w</span>
+          <span className="letterHeading2">i</span>
+          <span className="letterHeading2">t</span>
+          <span className="letterHeading2">h</span>
           <span> </span>
-          <span className="letterHeading">s</span>
-          <span className="letterHeading">t</span>
-          <span className="letterHeading">a</span>
-          <span className="letterHeading">c</span>
-          <span className="letterHeading">k</span>
-          <span> </span>
-          <span className="letterHeading">d</span>
-          <span className="letterHeading">e</span>
-          <span className="letterHeading">v</span>
-          <span className="letterHeading">e</span>
-          <span className="letterHeading">l</span>
-          <span className="letterHeading">o</span>
-          <span className="letterHeading">p</span>
-          <span className="letterHeading">e</span>
-          <span className="letterHeading">r</span>
-          <span className="letterHeading">.</span>
+          <span className="letterHeading2">infinite</span>
+          <br></br>
+          <span className="letterHeading2">P</span>
+          <span className="letterHeading2">e</span>
+          <span className="letterHeading2">r</span>
+          <span className="letterHeading2">s</span>
+          <span className="letterHeading2">p</span>
+          <span className="letterHeading2">e</span>
+          <span className="letterHeading2">c</span>
+          <span className="letterHeading2">t</span>
+          <span className="letterHeading2">i</span>
+          <span className="letterHeading2">v</span>
+          <span className="letterHeading2">e</span>
         </BigHeading>
         <div className="greenBanner banner"></div>
       </HeadingAnimatedWrapper>

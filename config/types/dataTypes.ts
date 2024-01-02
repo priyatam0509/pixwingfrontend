@@ -7,6 +7,15 @@ export interface IStack {
   };
 }
 
+export interface IPixWingStack {
+  id: string;
+  name: string;
+  image: {
+    url: string;
+    fileName: string;
+  };
+}
+
 export interface IApplication {
   id: string;
   name: string;
@@ -33,6 +42,7 @@ export interface IVolunteer {
   description: string;
   relevantLink: string;
 }
+
 
 export interface IResponsibility {
   id: string;
@@ -74,4 +84,26 @@ export interface IGithubGraphqlResponse {
       };
     };
   };
+}
+export interface IVision {
+  vId: BigInteger;
+  description: string;
+  
+}
+export interface IProduct {
+  id: BigInteger;
+  description: string;
+  productId: string;
+}
+
+export interface ICluture{
+  id_Culture: BigInteger;
+  title: string;
+  description: string;
+}
+
+export interface ICorprate{
+  csrId: BigInteger;
+  desc:String;
+  title:String;
 }

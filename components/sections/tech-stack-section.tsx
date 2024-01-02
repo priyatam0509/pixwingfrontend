@@ -3,10 +3,11 @@ import styled from "styled-components";
 import Image from "next/image";
 import gsap from "gsap";
 import { SectionTitle as TechSectionTitle } from "../../config/styled-components";
-import { IStack } from "../../config/types/dataTypes";
+import { IPixWingStack, IStack } from "../../config/types/dataTypes";
 
 interface IProps {
   stacks: IStack[];
+  pixwingstacks:IPixWingStack[];
   children?: ReactNode;
 }
 
@@ -135,7 +136,7 @@ const TechImageContainer = styled.div<IStyledTechImageContainer>`
   }
 `;
 
-const TechStackSection: FC<IProps> = ({ stacks }) => {
+const TechStackSection: FC<IProps> = ({ stacks ,pixwingstacks}) => {
   const techStackSectionRef = useCallback((el: HTMLDivElement) => {
     if (!el) return;
 
@@ -225,10 +226,24 @@ const TechStackSection: FC<IProps> = ({ stacks }) => {
   return (
     <TechStackSectionContainer ref={techStackSectionRef}>
       <TechSectionTitle className="techSectionTitle">
-        I know <span className="emphasisRedText">Technologies</span>
+      Our<span className="emphasisRedText"> Expertise </span>
       </TechSectionTitle>
       <AllTechContainer>
         {stacks.map((stack) => (
+          <TechImageContainer
+            className="techImage"
+            key={stack.id}
+            name={stack.name}
+          >
+            <Image
+              src={stack.image.url}
+              alt={stack.name}
+              layout="fill"
+              priority={true}
+            />
+          </TechImageContainer>
+        ))}
+        {pixwingstacks.map((stack) => (
           <TechImageContainer
             className="techImage"
             key={stack.id}

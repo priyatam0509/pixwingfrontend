@@ -231,7 +231,7 @@ const SocialsContainerComponent: React.FC = () => {
           ))}
         </SocialIconLinkContainer>
       </SocialIconLinksSection>
-      <DownloadResumeSection>
+      {/* <DownloadResumeSection>
         <Link href="/api/resume" passHref>
           <a
             className="contactSectionDownloadResume"
@@ -250,7 +250,7 @@ const SocialsContainerComponent: React.FC = () => {
             />
           </a>
         </Link>
-      </DownloadResumeSection>
+      </DownloadResumeSection> */}
     </SocialsContainer>
   );
 };

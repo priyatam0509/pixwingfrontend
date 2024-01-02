@@ -26,10 +26,10 @@ const Footer: React.FC = () => {
   return (
     <FooterComponent>
       <div className="container">
-        made with ❤️ by{" "}
-        <Link href="https://linkedin.com/in/theninza" passHref>
+        Engineered with ❤️ by{" "}
+        <Link href="https://www.linkedin.com/company/pixwingai/about/" passHref>
           <a target="_blank" rel="noopener noreferrer">
-            Nikhil Gupta
+            PixWingAi
           </a>
         </Link>
       </div>

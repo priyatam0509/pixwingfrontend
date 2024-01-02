@@ -3,12 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { Dispatch, FC, SetStateAction, useRef } from "react";
 import styled from "styled-components";
-import { IApplication } from "../config/types/dataTypes";
+import { IApplication,IProduct } from "../config/types/dataTypes";
 import useIsomorphicLayoutEffect from "../hooks/use-isomorphic-layout-effect";
 import ParticleCanvas from "./particle-canvas";
 
 interface IProps {
-  application: IApplication;
+  product: IProduct;
   isSectionVisible: boolean;
   isImageLoaded: boolean;
   setIsImageLoaded: Dispatch<SetStateAction<boolean>>;
@@ -21,13 +21,20 @@ const ApplicationDetailsContainer = styled.div`
   gap: ${({ theme }) => theme.space.xl};
   align-items: center;
   position: relative;
-
+  & .paragraph_productDetail{
+    font-size:2rem;
+  }
   & > .appDetailSection {
     opacity: 0;
+    font-size:1.5rem;
   }
 
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.xl}px) {
     gap: ${({ theme }) => theme.space.lg};
+    font-size:1rem;
+    & .paragraph_productDetail{
+      font-size:0.8rem;
+    }
   }
 `;
 
@@ -169,14 +176,14 @@ const ApplicationDescriptionContainer = styled.div`
 `;
 
 const ApplicationDetailsHomeScreen: FC<IProps> = ({
-  application,
+  product,
   isSectionVisible,
   isImageLoaded,
   setIsImageLoaded,
 }) => {
   const appDescRef = useRef<HTMLDivElement>(null);
 
-  const paragraphs = application.description.split("\n");
+  const paragraphs = product.description.split("\n");
 
   useIsomorphicLayoutEffect(() => {
     if (isSectionVisible) {
@@ -235,7 +242,7 @@ const ApplicationDetailsHomeScreen: FC<IProps> = ({
           // );
         });
     }
-  }, [isSectionVisible, application]);
+  }, [isSectionVisible, product]);
 
   // // manually handling height of description container
   // useIsomorphicLayoutEffect(() => {}, [width, height]);
@@ -244,15 +251,15 @@ const ApplicationDetailsHomeScreen: FC<IProps> = ({
     <ApplicationDetailsContainer className="applicationDetailsHomeScreen">
       <ApplicationImageAndLinksContainer className="appDetailSection">
         <ApplicationImageContainer>
-          <ParticleCanvas
+          {/* <ParticleCanvas
             isImageLoaded={isImageLoaded}
             setIsImageLoaded={setIsImageLoaded}
             image={application.image.url}
-          />
+          /> */}
         </ApplicationImageContainer>
 
         <ApplicationLinksContainer>
-          <Link href={application.liveUrl} passHref>
+          {/* <Link href={product.liveUrl} passHref>
             <a
               className="link-icon-a"
               rel="noopener noreferrer"
@@ -268,7 +275,7 @@ const ApplicationDetailsHomeScreen: FC<IProps> = ({
               />
             </a>
           </Link>
-          <Link href={application.sourceCodeUrl} passHref>
+          <Link href={product.sourceCodeUrl} passHref>
             <a
               className="link-icon-a"
               rel="noopener noreferrer"
@@ -283,11 +290,11 @@ const ApplicationDetailsHomeScreen: FC<IProps> = ({
                 objectFit="contain"
               />
             </a>
-          </Link>
+          </Link> */}
         </ApplicationLinksContainer>
       </ApplicationImageAndLinksContainer>
       <ApplicationTechStackContainer className="appDetailSection">
-        {application.stacks.map((stack) => (
+        {/* {application.stacks.map((stack) => (
           <div key={stack.id} className="tech-icon">
             <Image
               height={50}
@@ -297,14 +304,14 @@ const ApplicationDetailsHomeScreen: FC<IProps> = ({
               objectFit="contain"
             />
           </div>
-        ))}
+        ))} */}
       </ApplicationTechStackContainer>
       <ApplicationDescriptionContainer
         ref={appDescRef}
         className="appDetailSection"
       >
         {paragraphs.map((paragraph, index) => (
-          <p key={index}>{paragraph}</p>
+          <p className="paragraph_productDetail" key={index}>{paragraph}</p>
         ))}
       </ApplicationDescriptionContainer>
     </ApplicationDetailsContainer>

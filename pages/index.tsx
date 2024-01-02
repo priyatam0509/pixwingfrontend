@@ -13,13 +13,18 @@ import ContactSection from "../components/sections/contact-section";
 import HeroSection from "../components/sections/hero-section";
 import TechStackSection from "../components/sections/tech-stack-section";
 import WorksSection from "../components/sections/works-section";
-import { client } from "../config/graphql-request";
+import { client, client2 } from "../config/graphql-request";
 import type {
   IAchievement,
   IApplication,
   IResponsibility,
   IStack,
   IVolunteer,
+  IPixWingStack,
+  IVision,
+  IProduct,
+  ICluture,
+  ICorprate
 } from "../config/types/dataTypes";
 import useIsomorphicLayoutEffect from "../hooks/use-isomorphic-layout-effect";
 
@@ -31,6 +36,14 @@ type IInitialHomePageProps = {
   volunteers: IVolunteer[];
   responsibilities: IResponsibility[];
 };
+
+type IInitialHomePagePropsPix={
+  pixwingstacks: IPixWingStack[];
+  visions: IVision[];
+  ourProducts: IProduct[];
+  ourCultures:ICluture[];
+  corprateSocialRs:ICorprate[];
+}
 
 // a responsive container for the page
 const Container = styled.div`
@@ -51,7 +64,7 @@ const Container = styled.div`
 `;
 
 const Home: NextPage = ({
-  initialHomePageProps,
+  initialHomePageProps,initialHomePagePropsPixWingAi,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -92,14 +105,14 @@ const Home: NextPage = ({
       <MetaTags />
       <Container ref={containerRef}>
         <HeroSection />
-        <TechStackSection stacks={initialHomePageProps.stacks} />
-        <ApplicationsSection applications={initialHomePageProps.applications} />
+        <TechStackSection stacks={initialHomePageProps.stacks} pixwingstacks={initialHomePagePropsPixWingAi.pixwingstacks} />
+        <ApplicationsSection products={initialHomePagePropsPixWingAi.ourProducts} />
         <WorksSection
-          achievements={initialHomePageProps.achievements}
-          responsibilities={initialHomePageProps.responsibilities}
-          volunteers={initialHomePageProps.volunteers}
+          ourCultures={initialHomePagePropsPixWingAi.ourCultures}
+          corprateSocialRs={initialHomePagePropsPixWingAi.corprateSocialRs}
+          visions={initialHomePagePropsPixWingAi.visions}
         />
-        <APeekInLifeSection />
+        {/* <APeekInLifeSection /> */}
         <ContactSection />
       </Container>
     </>
@@ -161,9 +174,39 @@ export const getServerSideProps: GetServerSideProps = async () => {
       }
     }
   `;
-
+  const querypixwingai = gql`
+    query InitialData {
+      stacks {
+        id
+        name
+        image {
+          url
+          fileName
+        }
+      }
+      visions{
+        vId
+        description
+      }
+      ourProducts{
+        id
+        description
+        productId
+      }
+      corprateSocialRs{
+        csrId
+        desc
+        title
+      }
+      ourCultures{
+        title
+        id_Culture
+        description
+      }
+    }
+  `;
   const data = await client.request(query);
-
+  const data1=await client2.request(querypixwingai);
   const initialHomePageProps: IInitialHomePageProps = {
     stacks: data.stacks,
     applications: data.applications,
@@ -171,8 +214,14 @@ export const getServerSideProps: GetServerSideProps = async () => {
     volunteers: data.volunteers,
     responsibilities: data.responsibilities,
   };
-
+  const initialHomePagePropsPixWingAi: IInitialHomePagePropsPix = {
+    pixwingstacks: data1.stacks,
+    visions: data1.visions,
+    ourProducts: data1.ourProducts,
+    ourCultures:data1.ourCultures,
+    corprateSocialRs: data1.corprateSocialRs,
+  };
   return {
-    props: { initialHomePageProps },
+    props: { initialHomePageProps,initialHomePagePropsPixWingAi },
   };
 };

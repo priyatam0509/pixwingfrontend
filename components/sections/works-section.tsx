@@ -4,24 +4,30 @@ import { useCallback, useState } from "react";
 import styled from "styled-components";
 import { SectionTitle } from "../../config/styled-components";
 import {
-  IAchievement,
-  IVolunteer,
+  IProduct,
+  IVision,
   IResponsibility,
+  ICluture,
+  ICorprate,
 } from "../../config/types/dataTypes";
 import CarouselComponent from "../carousel";
 
 interface IProps {
-  achievements: IAchievement[];
-  volunteers: IVolunteer[];
-  responsibilities: IResponsibility[];
+ 
+  
+  visions: IVision[];
+  ourCultures:ICluture[];
+  corprateSocialRs:ICorprate[];
 }
 
 const WorksSectionContainer = styled.div`
   min-height: 100vh;
   width: 100%;
-
+ background-color:#FFFAFA!important;
+  border-radius:20px;
   overflow-y: hidden;
-
+  color: black !important;
+  padding: 20px 20px;
   /* align items to center of the container */
   display: flex;
   flex-direction: column;
@@ -88,7 +94,7 @@ const SubSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.space.xl};
-
+  padding: 5px 50px;
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
     min-height: 10vh;
     gap: ${({ theme }) => theme.space.lg};
@@ -180,13 +186,12 @@ const SpacedSubSectionTitle = styled(SectionTitle)`
 
 const SubSectionDescription = styled.p`
   width: 100%;
-  font-size: 1.2rem;
-  color: ${({ theme }) => theme.colors.textSecondary};
+  font-size: 1.7rem;
+  color: black;
   line-height: 1.5;
   transition: all 0.3s ease;
-
   &:hover {
-    color: ${({ theme }) => theme.colors.textPrimary};
+    color: #41725D;
   }
 
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.lg}px) {
@@ -195,9 +200,9 @@ const SubSectionDescription = styled.p`
 `;
 
 const WorksSection: React.FC<IProps> = ({
-  achievements,
-  volunteers,
-  responsibilities,
+  corprateSocialRs,
+  ourCultures,
+  visions,
 }) => {
   const [showCarousel, setShowCarousel] = useState<boolean>(false);
 
@@ -331,30 +336,17 @@ const WorksSection: React.FC<IProps> = ({
         <WorksColumns>
           <SubSection>
             <SmallTitle className="smallTitle">
-              My <span className="emphasisRedText">Achievements</span>
+              Our <span className="emphasisRedText">Culture</span>
             </SmallTitle>
             <CarouselComponent showCarousel={showCarousel}>
-              {achievements.map((achievement) => (
-                <SubSectionBody key={achievement.id}>
+              {ourCultures.map((product) => (
+                <SubSectionBody key={product.id_Culture}>
                   <div className="flexbox">
                     <SpacedSubSectionTitle>
-                      🏆{achievement.name}
+                      🏆{product.title}
                     </SpacedSubSectionTitle>
-                    <span className="link">
-                      <Link href={achievement.relevantLink} passHref>
-                        <a
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`umami--click--external_${achievement.name
-                            .toLowerCase()
-                            .replace(/ /g, "-")}`}
-                        >
-                          🔗
-                        </a>
-                      </Link>
-                    </span>
                   </div>
-                  {achievement.description.split("\n").map((paragraph, i) => (
+                  {product.description.split("\n").map((paragraph, i) => (
                     <SubSectionDescription key={i}>
                       {paragraph}
                     </SubSectionDescription>
@@ -365,29 +357,11 @@ const WorksSection: React.FC<IProps> = ({
           </SubSection>
           <SubSection>
             <SmallTitle className="smallTitle">
-              I <span className="emphasisGreenText">Volunteer</span>
+              Our <span className="emphasisGreenText">Vision</span>
             </SmallTitle>
             <CarouselComponent showCarousel={showCarousel}>
-              {volunteers.map((volunteer) => (
-                <SubSectionBody key={volunteer.id}>
-                  <div className="flexbox">
-                    <SpacedSubSectionTitle>
-                      ☮️{volunteer.name}
-                    </SpacedSubSectionTitle>
-                    <span className="link">
-                      <Link href={volunteer.relevantLink} passHref>
-                        <a
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`umami--click--external_${volunteer.name
-                            .toLowerCase()
-                            .replace(/ /g, "-")}`}
-                        >
-                          🔗
-                        </a>
-                      </Link>
-                    </span>
-                  </div>
+              {visions.map((volunteer) => (
+                <SubSectionBody key={volunteer.vId}>
                   {volunteer.description.split("\n").map((paragraph, i) => (
                     <SubSectionDescription key={i}>
                       {paragraph}
@@ -401,10 +375,11 @@ const WorksSection: React.FC<IProps> = ({
         <WorksColumns>
           <SubSection>
             <SmallTitle className="smallTitle">
-              My <span className="emphasisBlueText">Experience</span>
+              Our <span className="emphasisBlueText">Presence</span>
             </SmallTitle>
             <CarouselComponent showCarousel={showCarousel}>
-              {responsibilities.map((responsibility) => (
+              Opening Soon
+              {/* {responsibilities.map((responsibility) => (
                 <SubSectionBody key={responsibility.id}>
                   <SpacedSubSectionTitle>
                     🧑🏻‍💻{responsibility.name}
@@ -444,9 +419,10 @@ const WorksSection: React.FC<IProps> = ({
                       </SubSectionDescription>
                     ))}
                 </SubSectionBody>
-              ))}
+              ))} */}
             </CarouselComponent>
           </SubSection>
+          
         </WorksColumns>
       </WorksFlexContainer>
     </WorksSectionContainer>
