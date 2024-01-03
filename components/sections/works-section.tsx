@@ -377,9 +377,10 @@ const WorksSection: React.FC<IProps> = ({
             <SmallTitle className="smallTitle">
               Our <span className="emphasisBlueText">Presence</span>
             </SmallTitle>
-            <CarouselComponent showCarousel={showCarousel}>
-              Opening Soon
-              {/* {responsibilities.map((responsibility) => (
+            <h1>Coming Soon!!</h1>
+            {/* <CarouselComponent showCarousel={showCarousel}>
+              
+              {responsibilities.map((responsibility) => (
                 <SubSectionBody key={responsibility.id}>
                   <SpacedSubSectionTitle>
                     🧑🏻‍💻{responsibility.name}
@@ -419,8 +420,8 @@ const WorksSection: React.FC<IProps> = ({
                       </SubSectionDescription>
                     ))}
                 </SubSectionBody>
-              ))} */}
-            </CarouselComponent>
+              ))}
+            </CarouselComponent> */}
           </SubSection>
           
         </WorksColumns>
