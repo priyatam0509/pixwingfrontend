@@ -339,8 +339,8 @@ const WorksSection: React.FC<IProps> = ({
               Our <span className="emphasisRedText">Culture</span>
             </SmallTitle>
             <CarouselComponent showCarousel={showCarousel}>
-              {ourCultures.map((product) => (
-                <SubSectionBody key={product.id_Culture}>
+              {ourCultures.map((product,id) => (
+                <SubSectionBody key={id}>
                   <div className="flexbox">
                     <SpacedSubSectionTitle>
                       🏆{product.title}
@@ -360,8 +360,8 @@ const WorksSection: React.FC<IProps> = ({
               Our <span className="emphasisGreenText">Vision</span>
             </SmallTitle>
             <CarouselComponent showCarousel={showCarousel}>
-              {visions.map((volunteer) => (
-                <SubSectionBody key={volunteer.vId}>
+              {visions.map((volunteer,id) => (
+                <SubSectionBody key={id}>
                   {volunteer.description.split("\n").map((paragraph, i) => (
                     <SubSectionDescription key={i}>
                       {paragraph}

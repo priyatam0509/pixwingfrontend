@@ -243,7 +243,7 @@ const ApplicationsSection: FC<IProps> = ({ products }) => {
           {products.map((application, idx) => (
             <ApplicationName
               isSelected={selectedApplication === idx}
-              key={application.id}
+              key={idx}
               onClick={()=>handleApplicationNameClick(idx)}
               className="applicationName"
             >
